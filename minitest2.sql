@@ -129,15 +129,15 @@ select cityName, destinationName, count(destination_id) as 'số lượng tour c
 from quanlidulich.destination join quanlidulich.city on destination.city_id = city.id
 join quanlidulich.tour on destination.id = tour.destination_id
 group by destination_id;
-
--- Tính số tour có ngày bắt đầu trong tháng 3 năm 2020 ( dùng count) 
+ 
+-- Tính số tour có ngày bắt đầu trong tháng 3 năm 2020 ( dùng count và hàm month) 
 
 select count(dateStart) as 'số tour bắt đầu từ tháng 3 năm 2020'
 from quanlidulich.tour
-where dateStart >= '2020-03-01' and dateStart < '2020-04-01';
+where month(tour.dateStart) = 3 and year(tour.dateStart) = 2020;
 
 -- Tính số tour có ngày kết thúc trong tháng 4 năm 2020
 
 select count(dateEnd) as 'số tour có ngày kết thúc trong tháng 4 năm 2020'
 from quanlidulich.tour
-where dateEnd >= '2020-04-01' and dateEnd < '2020-05-01';
+where month(tour.dateEnd) = 4 and year(tour.dateEnd) = 2020;
